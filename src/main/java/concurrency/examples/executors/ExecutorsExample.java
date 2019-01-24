@@ -14,15 +14,15 @@ public class ExecutorsExample {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
 
         /*************** Example 1 **********/
-//        ExecutorService executor = Executors.newSingleThreadExecutor();
-//        executor.submit(() -> threadImplementation("Hello 1 "));
-//        executor.submit(() -> threadImplementation("Hello 2 "));
-//        executor.submit(() -> threadImplementation("Hello 3 "));
-//        executor.submit(() -> threadImplementation("Hello 4 "));
-//        executor.submit(() -> threadImplementation("Hello 5 "));
-//        executor.submit(() -> threadImplementation("Hello 6 "));
-//        executor.submit(() -> threadImplementation("Hello 7 "));
-//        executor.submit(() -> threadImplementation("Hello 8 "));
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.submit(() -> threadImplementation("Hello 1 "));
+        executor.submit(() -> threadImplementation("Hello 2 "));
+        executor.submit(() -> threadImplementation("Hello 3 "));
+        executor.submit(() -> threadImplementation("Hello 4 "));
+        executor.submit(() -> threadImplementation("Hello 5 "));
+        executor.submit(() -> threadImplementation("Hello 6 "));
+        executor.submit(() -> threadImplementation("Hello 7 "));
+        executor.submit(() -> threadImplementation("Hello 8 "));
 
         /*************** Example 2 **********/
 //        ExecutorService executor = Executors.newFixedThreadPool(3);
@@ -105,20 +105,20 @@ public class ExecutorsExample {
 
 
         /*************** Example 7 **********/
-        ExecutorService executor = Executors.newFixedThreadPool(3);
-        List<Callable<String>> callables = Arrays.asList(
-                () -> returningThreadImplementation("Hello 1 "),
-                () -> returningThreadImplementation("Hello 2 "),
-                () -> returningThreadImplementation("Hello 3 "),
-                () -> returningThreadImplementation("Hello 4 "),
-                () -> returningThreadImplementation("Hello 5 "),
-                () -> returningThreadImplementation("Hello 6 "),
-                () -> returningThreadImplementation("Hello 7 "),
-                () -> returningThreadImplementation("Hello 8 "));
-
-        String result = executor.invokeAny(callables);
-        System.out.println(result);
-        System.out.println("************************");
+//        ExecutorService executor = Executors.newFixedThreadPool(3);
+//        List<Callable<String>> callables = Arrays.asList(
+//                () -> returningThreadImplementation("Hello 1 "),
+//                () -> returningThreadImplementation("Hello 2 "),
+//                () -> returningThreadImplementation("Hello 3 "),
+//                () -> returningThreadImplementation("Hello 4 "),
+//                () -> returningThreadImplementation("Hello 5 "),
+//                () -> returningThreadImplementation("Hello 6 "),
+//                () -> returningThreadImplementation("Hello 7 "),
+//                () -> returningThreadImplementation("Hello 8 "));
+//
+//        String result = executor.invokeAny(callables);
+//        System.out.println(result);
+//        System.out.println("************************");
 
 
         /*************** Shutdown the executor **********/

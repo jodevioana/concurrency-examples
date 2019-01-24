@@ -10,15 +10,15 @@ public class CompletableFutureExamples {
 
 
         /********** Example 1 ***************/
-//        CompletableFuture<String> completableFuture1 = CompletableFuture
-//                //defining the initial callable
-//                .supplyAsync(() -> "Hello")
-//                //process the callable result, modifying it
-//                .thenApply(resultFromPrevious -> resultFromPrevious + " World")
-//                //do an action after completion
-//                .whenComplete((resultFromPrevious, throwable) -> System.out.println("Completed with result " + resultFromPrevious));
-//        String result1 = completableFuture1.get();
-//        System.out.println(result1);
+        CompletableFuture<String> completableFuture1 = CompletableFuture
+                //defining the initial callable
+                .supplyAsync(() -> "Hello")
+                //process the callable result, modifying it
+                .thenApply(resultFromPrevious -> resultFromPrevious + " World")
+                //do an action after completion
+                .whenComplete((resultFromPrevious, throwable) -> System.out.println("Completed with result " + resultFromPrevious));
+        String result1 = completableFuture1.get();
+        System.out.println(result1);
 
 
         /********** Example 2 ***************/
@@ -121,27 +121,27 @@ public class CompletableFutureExamples {
         /********** Example 8 - Executors ***************/
 //        ExecutorService executor = Executors.newSingleThreadExecutor();
 //        ExecutorService executor = Executors.newFixedThreadPool(5);
-        ExecutorService executor = Executors.newCachedThreadPool();
-        CompletableFuture<String> executorFuture1 = CompletableFuture.supplyAsync(() -> callableImplementation("Hello 1"), executor);
-        CompletableFuture<String> executorFuture2 = CompletableFuture.supplyAsync(() -> callableImplementation("Hello 2"), executor);
-        CompletableFuture<String> executorFuture3 = CompletableFuture.supplyAsync(() -> callableImplementation("Hello 3"), executor);
-        CompletableFuture<String> executorFuture4 = CompletableFuture.supplyAsync(() -> callableImplementation("Hello 4"), executor);
-        CompletableFuture<String> executorFuture5 = CompletableFuture.supplyAsync(() -> callableImplementation("Hello 5"), executor);
-        CompletableFuture<Void> combinedFutureExecutor = CompletableFuture.allOf(
-                executorFuture1,
-                executorFuture2,
-                executorFuture3,
-                executorFuture4,
-                executorFuture5
-        );
-
-        //awaits for all to be completed
-        combinedFutureExecutor.get();
-
-        String combinedFutureResult = Stream.of(executorFuture1, executorFuture2, executorFuture3, executorFuture4, executorFuture5)
-                .map(CompletableFuture::join)
-                .collect(Collectors.joining("\n"));
-        System.out.println(combinedFutureResult);
+//        ExecutorService executor = Executors.newCachedThreadPool();
+//        CompletableFuture<String> executorFuture1 = CompletableFuture.supplyAsync(() -> callableImplementation("Hello 1"), executor);
+//        CompletableFuture<String> executorFuture2 = CompletableFuture.supplyAsync(() -> callableImplementation("Hello 2"), executor);
+//        CompletableFuture<String> executorFuture3 = CompletableFuture.supplyAsync(() -> callableImplementation("Hello 3"), executor);
+//        CompletableFuture<String> executorFuture4 = CompletableFuture.supplyAsync(() -> callableImplementation("Hello 4"), executor);
+//        CompletableFuture<String> executorFuture5 = CompletableFuture.supplyAsync(() -> callableImplementation("Hello 5"), executor);
+//        CompletableFuture<Void> combinedFutureExecutor = CompletableFuture.allOf(
+//                executorFuture1,
+//                executorFuture2,
+//                executorFuture3,
+//                executorFuture4,
+//                executorFuture5
+//        );
+//
+//        //awaits for all to be completed
+//        combinedFutureExecutor.get();
+//
+//        String combinedFutureResult = Stream.of(executorFuture1, executorFuture2, executorFuture3, executorFuture4, executorFuture5)
+//                .map(CompletableFuture::join)
+//                .collect(Collectors.joining("\n"));
+//        System.out.println(combinedFutureResult);
     }
 
     private static String callableImplementation(String input) {

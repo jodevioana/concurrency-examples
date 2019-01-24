@@ -20,9 +20,9 @@ public class LocksExamples {
 
 
         /********* Example 1 *********/
-//        LocksObject countObject = new LocksObject();
-//        IntStream.range(0, 10000)
-//                .forEach(i -> executor.submit(() -> countObject.increment(i)));
+        LocksObject countObject = new LocksObject();
+        IntStream.range(0, 10000)
+                .forEach(i -> executor.submit(() -> countObject.increment(i)));
 
 
 
@@ -54,46 +54,46 @@ public class LocksExamples {
 
 
         /********* Example 3 *********/
-        Map<String, String> map = new HashMap<>();
-        StampedLock lock = new StampedLock();
-
-        executor.submit(() -> {
-            long stamp = lock.writeLock();
-            try {
-                System.out.println("Writing bar 1");
-                map.put("foo", "bar 1");
-                TimeUnit.SECONDS.sleep(4);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } finally {
-                lock.unlockWrite(stamp);
-            }
-        });
-
-        executor.submit(() -> {
-            long stamp = lock.writeLock();
-            try {
-                System.out.println("Writing bar 2");
-                map.put("foo", "bar 2");
-            } finally {
-                lock.unlockWrite(stamp);
-            }
-        });
-
-        Runnable readTask = () -> {
-            long stamp = lock.readLock();
-            try {
-                System.out.println("Reading foo - " + map.get("foo"));
-                TimeUnit.SECONDS.sleep(2);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } finally {
-                lock.unlockRead(stamp);
-            }
-        };
-
-        executor.submit(readTask);
-        executor.submit(readTask);
+//        Map<String, String> map = new HashMap<>();
+//        StampedLock lock = new StampedLock();
+//
+//        executor.submit(() -> {
+//            long stamp = lock.writeLock();
+//            try {
+//                System.out.println("Writing bar 1");
+//                map.put("foo", "bar 1");
+//                TimeUnit.SECONDS.sleep(4);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            } finally {
+//                lock.unlockWrite(stamp);
+//            }
+//        });
+//
+//        executor.submit(() -> {
+//            long stamp = lock.writeLock();
+//            try {
+//                System.out.println("Writing bar 2");
+//                map.put("foo", "bar 2");
+//            } finally {
+//                lock.unlockWrite(stamp);
+//            }
+//        });
+//
+//        Runnable readTask = () -> {
+//            long stamp = lock.readLock();
+//            try {
+//                System.out.println("Reading foo - " + map.get("foo"));
+//                TimeUnit.SECONDS.sleep(2);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            } finally {
+//                lock.unlockRead(stamp);
+//            }
+//        };
+//
+//        executor.submit(readTask);
+//        executor.submit(readTask);
 
 
         stop(executor);
